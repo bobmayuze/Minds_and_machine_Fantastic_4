@@ -1,3 +1,6 @@
 Day 1
 	- Figure the teamname: Fantastic Four
-	
+	- Finishe the basic mechanic structure
+	- Finish the test file 
+	- Starting mapping the logic
+	- Setting up the envo for developing
