@@ -4,3 +4,14 @@ Day 1
 	- Finish the test file 
 	- Starting mapping the logic
 	- Setting up the envo for developing
+
+Day 2
+	- Nason
+		- Get it set up
+			- Upload code
+			- Get one wheel move
+		- Basic judgement
+			- make use of if/else
+		- Get data from the sensor
+			- Type of data
+		- Send data to it
