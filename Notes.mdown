@@ -15,3 +15,7 @@ Day 2
 		- Get data from the sensor
 			- Type of data
 		- Send data to it
+	- Yuze and Levana 
+		- Flow chart
+	- Sara 
+		- Record the process into paragraph
