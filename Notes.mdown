@@ -6,7 +6,7 @@ Day 1
 	- Setting up the envo for developing
 
 Day 2
-	- Nason
+	- Nathan
 		- Get it set up
 			- Upload code
 			- Get one wheel move
