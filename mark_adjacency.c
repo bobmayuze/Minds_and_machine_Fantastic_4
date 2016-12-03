@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <mover.c>
 
 void mark_adjacency(char adj[4][2])
 {	
@@ -196,14 +197,14 @@ int main ()
 				turn_and_move();
 				break;
 			case 2||3:
-				for (int i = 0; i < 4; i++)
+				for (int i = 0; i < 4; i++)  // 0 is forward , 1 is right, 2 is back, 3 is left
 				{
 					if (real[adj[i][0]][adj[i][0]] == 2)
 						// kill
 						move_to_that();
 						break;
 					else
-						turn_and_move();
+						turn_and_move(); // back, turn right, go forward
 						break;
 				}
 			case 4||5||6||7:
