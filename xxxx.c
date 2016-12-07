@@ -30,6 +30,22 @@ int bd[4][4] = {{9,9,0,0},{9,0,0,0},{0,0,0,0},{0,0,0,0}};
 int poss[4][4][4];
 int end=0;
 
+<<<<<<< HEAD
+=======
+void forward()
+{
+	ResetAllTachoCounts(OUT_AD);
+	SetPower(OUT_A, -10);
+	SetPower(OUT_D, -10);
+	//Then we turn the motors on
+	On(OUT_AD);
+	while (MotorRotationCount(OUT_A)> 150)
+	{
+
+	}
+	Off(OUT_ALL);
+}
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
 
 void move()
 {
@@ -109,6 +125,7 @@ void move()
     return; 
 }
 
+<<<<<<< HEAD
 void forward();
 {
     ResetAllTachoCounts(OUT_AD);
@@ -122,6 +139,8 @@ void forward();
     }
     Off(OUT_ALL);
 }
+=======
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
 
 void backup()
 {
@@ -259,8 +278,14 @@ void init(int x, int y)
 void printBd() // for test only
 {
     printf("\n");
+<<<<<<< HEAD
     for(int i=3;i>=0;i--){
         for(int j=0;j<4;j++){
+=======
+	int i, j;
+    for(i=3;i>=0;i--){
+        for(j=0;j<4;j++){
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
             printf("%2d ",bd[i][j]);
         }
         printf("\n");
@@ -437,12 +462,21 @@ void turn_and_move()
 
  int count_gold()
 {
+<<<<<<< HEAD
     int num = 0;
     for (int i=0;i<4;i++)
     {
         for (int j=0;j<4;j++)
         {
             for (int k=0;k<4;k++)
+=======
+    int num = 0, i, j, k;
+    for (i=0;i<4;i++)
+    {
+        for (j=0;j<4;j++)
+        {
+            for (k=0;k<4;k++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
             {
                 if (poss[i][j][k]==4)
                     num++;
@@ -454,12 +488,21 @@ void turn_and_move()
 
 int count_wumpus()
 {
+<<<<<<< HEAD
     int num = 0;
     for (int i=0;i<4;i++)
     {
         for (int j=0;j<4;j++)
         {
             for (int k=0;k<4;k++)
+=======
+    int num = 0,i, j, k;
+    for (i=0;i<4;i++)
+    {
+        for (j=0;j<4;j++)
+        {
+            for (k=0;k<4;k++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
             {
                 if (poss[i][j][k]==2)
                     num++;
@@ -471,7 +514,12 @@ int count_wumpus()
 
 void clear_(int m, int n)
 {
+<<<<<<< HEAD
     for (int i=0;i<4;i++)
+=======
+	int i;
+    for (i=0;i<4;i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
     {
         poss[m][n][i] = 0; // 注意 m n
     }
@@ -479,12 +527,22 @@ void clear_(int m, int n)
 
 void find_gold()
 {
+<<<<<<< HEAD
     if (count_gold() == 1){
         for (int i=0;i<4;i++)
         {
             for (int j=0;j<4;j++)
             {
                 for (int k=0;k<4;k++)
+=======
+	int i, j, k;
+    if (count_gold() == 1){
+        for (i=0;i<4;i++)
+        {
+            for (j=0;j<4;j++)
+            {
+                for (k=0;k<4;k++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                 {
                     if (poss[i][j][k]==4){
                         if (bd[i][j]!=9){
@@ -500,12 +558,23 @@ void find_gold()
 
 void find_wumpus()
 {
+<<<<<<< HEAD
     if (count_wumpus() == 1){
         for (int i=0;i<4;i++)
         {
             for (int j=0;j<4;j++)
             {
                 for (int k=0;k<4;k++)
+=======
+	int i, j, k;
+    if (count_wumpus() == 1)
+	{
+        for (i=0;i<4;i++)
+        {
+            for (j=0;j<4;j++)
+            {
+                for (k=0;k<4;k++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                 {
                     if (poss[i][j][k]==2)
                         if (bd[i][j]!=9){
@@ -519,9 +588,16 @@ void find_wumpus()
 
 int know_gold()
 {
+<<<<<<< HEAD
     for (int i=0;i<4;i++)
     {
         for (int j=0;j<4;j++)
+=======
+	int i, j;
+    for (i=0;i<4;i++)
+    {
+        for (j=0;j<4;j++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
         {
             if (bd[i][j]==4)
                 return 1;
@@ -532,8 +608,13 @@ int know_gold()
 
 int count(int poss[4][4][4],int m, int n)
 {
+<<<<<<< HEAD
     int k=0;
     for (int i=0; i<4; i++)
+=======
+    int k=0, i;
+    for (i=0; i<4; i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
     {
         if (poss[m][n][i] != 0)
             k++;
@@ -543,8 +624,14 @@ int count(int poss[4][4][4],int m, int n)
 
 void mark_adjacency(int signal, int x, int y)
 {
+<<<<<<< HEAD
     int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
     for (int i=0; i<4; i++)
+=======
+	int i;
+    int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
+    for (i=0; i<4; i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
     {
         int m = adj[i][0];
         int n = adj[i][1];
@@ -565,7 +652,11 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0) // if unknown
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++)
+=======
+                    for (i=0;i<4;i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 1)
                         {
@@ -589,7 +680,11 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++) //i<????
+=======
+                    for (i=0;i<4;i++) //i<????
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 2)
                         {
@@ -613,7 +708,11 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++) //i<????
+=======
+                    for (i=0;i<4;i++) //i<????
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 2)
                         {
@@ -634,7 +733,11 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++) //i<????
+=======
+                    for (i=0;i<4;i++) //i<????
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 1)
                         {
@@ -659,7 +762,11 @@ void mark_adjacency(int signal, int x, int y)
                 if (bd[m][n] == 0)
                 {
                     int p = 0;
+<<<<<<< HEAD
                     for (int i=0;i<4;i++)
+=======
+                    for (i=0;i<4;i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 4)
                         {
@@ -683,7 +790,11 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++)
+=======
+                    for (i=0;i<4;i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 4)
                         {
@@ -704,7 +815,11 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++) //i<????
+=======
+                    for (i=0;i<4;i++) //i<????
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 1)
                         {
@@ -728,7 +843,11 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++)
+=======
+                    for (i=0;i<4;i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 4)
                         {
@@ -749,7 +868,11 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++) //i<????
+=======
+                    for (i=0;i<4;i++) //i<????
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 2)
                         {
@@ -773,7 +896,11 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++)
+=======
+                    for (i=0;i<4;i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 4)
                         {
@@ -794,7 +921,11 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++) //i<????
+=======
+                    for (i=0;i<4;i++) //i<????
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 2)
                         {
@@ -815,7 +946,11 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
+<<<<<<< HEAD
                     for (int i=0;i<4;i++) //i<????
+=======
+                    for (i=0;i<4;i++) //i<????
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (poss[m][n][i] == 1)
                         {
@@ -911,11 +1046,19 @@ int main()
         }
         else
         {
+<<<<<<< HEAD
             if (know_gold())
             {   printBd();
                 int p=0;
                 int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
                 for (int i=0;i<4;i++)
+=======
+            if (know_gold() && (signal == 4 || signal == 0))
+            {   printBd();
+                int p=0, i;
+                int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
+                for (i=0;i<4;i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                 {
                     if (bd[adj[i][0]][adj[i][1]] == 4)
                     {
@@ -926,7 +1069,12 @@ int main()
                 }
                 if (p==0){
                     move_back();
+<<<<<<< HEAD
                     for (int i=0;i<4;i++){
+=======
+					int i;
+                    for (i=0;i<4;i++){
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                         if (bd[adj[i][0]][adj[i][1]] == 4)
                     {
                         move_to_that(adj[i][0], adj[i][1]);
@@ -949,8 +1097,13 @@ int main()
                     }
                 
                 else if (signal == 2 || signal == 3){
+<<<<<<< HEAD
 
                     for (int i=0; i<4; i++)
+=======
+					int i;
+                    for (i=0; i<4; i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
                         if (bd[ adj[i][0] ][ adj[i][1] ] == 2){
@@ -968,9 +1121,15 @@ int main()
                     }
                 
                 else if (signal == 4 || signal == 5 || signal == 6 || signal == 7){
+<<<<<<< HEAD
                     int p=0;
                     int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
                     for (int i=0; i<4; i++)
+=======
+                    int p=0, i;
+                    int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
+                    for ( i=0; i<4; i++)
+>>>>>>> b1ba03978861d9c09d5a2f596bcb608d2ec71435
                     {
                         if (bd[ adj[i][0] ][ adj[i][0] ] == 4)
                         {
