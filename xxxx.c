@@ -30,6 +30,21 @@ int bd[4][4] = {{9,9,0,0},{9,0,0,0},{0,0,0,0},{0,0,0,0}};
 int poss[4][4][4];
 int end=0;
 
+void forward()
+{
+	ResetAllTachoCounts(OUT_AD);
+	SetPower(OUT_A, -21);
+	SetPower(OUT_D, -20);
+	//Then we turn the motors on
+	On(OUT_AD);
+	printf("3.1\n");
+	while (MotorRotationCount(OUT_A)> -700)
+	{
+
+	}
+	printf("3.2\n");
+	Off(OUT_ALL);
+}
 
 void move()
 {
@@ -50,6 +65,7 @@ void move()
     SetPower(OUT_AD, -20);
     
     //Then we turn the motors on
+	printf("2.1\n");
     On(OUT_AD);
     
     while ((sensor < THRESHOLD) && (sensor2 < THRESHOLD))
@@ -74,12 +90,14 @@ void move()
         }
         //printf("sensor: %d sensor2: %d\n", sensor, sensor2);
     }
+	printf("2.2\n");
     Off(OUT_ALL);
     Wait(100);
     
     if (sensor > sensor2)
     {
         On(OUT_D);
+		printf("2.3\n");
         while (sensor2 < THRESHOLD)
         {
             temp2 = ReadSerial(4);
@@ -93,6 +111,7 @@ void move()
     else
     {
         On(OUT_A);
+		printf("2.4\n");
         while (sensor < THRESHOLD)
         {
             temp = ReadSerial(1);
@@ -103,141 +122,131 @@ void move()
         }
         Off(OUT_ALL);
     }
-    
+	printf("2.5\n");
     forward();
     
     return; 
 }
 
-void forward();
-{
-    ResetAllTachoCounts(OUT_AD);
-    SetPower(OUT_A, -10);
-    SetPower(OUT_D, -10);
-    //Then we turn the motors on
-    On(OUT_AD);
-    while (MotorRotationCount(OUT_A)> 150)
-    {
-        
-    }
-    Off(OUT_ALL);
-}
 
 void backup()
 {
-    
-    //We set the "threshold" value for determining what color we're looking at
-    //to 100, but this number will almost definitely be different for you.
-    int THRESHOLD = 23;
-    
-    //"sensor" is where we'll store the value that is returned by the sensor on out bot
-    int sensor = 0;
-    int sensor2 = 0;
-    int whichside = 0;
-    //this variable is to help us decide what values to throw away and what to keep
-    //because the sensors aren't completely reliable.
-    int temp = 0;
-    int temp2 = 0;
-    
-    //We set the power level for the motors before moving forward until a line
-    SetPower(OUT_AD, 20);
-    
-    //Then we turn the motors on
-    On(OUT_AD);
-    
-    while ((sensor < THRESHOLD) && (sensor2 < THRESHOLD))
-    {
-        //we will continue to execute the code in this block while the sensor
-        //is picking up a value less than the threshold. This will likely mean that, while the robot is
-        //over a black (or in general, dark) surface, it will continue to repeat these instructions
-        
-        //we read the value from serial port 1 into the temp variable
-        temp = ReadSerial(1);
-        temp2 = ReadSerial(4);
-        
-        //the invalid values that we want to throw away tend to be in the 400-1700 range, we only want
-        //to look at values that are less than 100. You should never receive valid values above 100.
-        if (temp < 100)
-        {
-            sensor = temp;//assuming the temporary value we just read is valid, we store it into the sensor variable
-        }
-        if (temp2 < 100)
-        {
-            sensor2 = temp2;//assuming the temporary value we just read is valid, we store it into the sensor variable
-        }
-        //printf("sensor: %d sensor2: %d\n", sensor, sensor2);
-    }
-    Off(OUT_ALL);
-    Wait(100);
-    if (sensor > sensor2)
-    {
-        
-        On(OUT_D);
-        while (sensor2 < THRESHOLD)
-        {
-            temp2 = ReadSerial(4);
-            if (temp2 < 100)
-            {
-                sensor2 = temp2;//assuming the temporary value we just read is valid, we store it into the sensor variable
-            }
-        }
-        Off(OUT_ALL);
-    }
-    else
-    {
-        On(OUT_A);
-        while (sensor < THRESHOLD)
-        {
-            temp = ReadSerial(1);
-            if (temp < 100)
-            {
-                sensor = temp;//assuming the temporary value we just read is valid, we store it into the sensor variable
-            }
-        }
-        Off(OUT_ALL);
-    }
-    ResetAllTachoCounts(OUT_AD);
-    SetPower(OUT_A, 10);
-    SetPower(OUT_D, 10);
-    //Then we turn the motors on
-    On(OUT_AD);
-    while (MotorRotationCount(OUT_A)> 150)
-    {
-        
-    }
-    Off(OUT_ALL);
-    
-    return;
+
+	//We set the "threshold" value for determining what color we're looking at
+	//to 100, but this number will almost definitely be different for you.
+	int THRESHOLD = 23;
+
+	//"sensor" is where we'll store the value that is returned by the sensor on out bot
+	int sensor = 0;
+	int sensor2 = 0;
+	int whichside = 0;
+	//this variable is to help us decide what values to throw away and what to keep
+	//because the sensors aren't completely reliable.
+	int temp = 0;
+	int temp2 = 0;
+
+	//We set the power level for the motors before moving forward until a line
+	SetPower(OUT_AD, 20);
+
+	//Then we turn the motors on
+	On(OUT_AD);
+
+	while ((sensor < THRESHOLD) && (sensor2 < THRESHOLD))
+	{
+		//we will continue to execute the code in this block while the sensor
+		//is picking up a value less than the threshold. This will likely mean that, while the robot is
+		//over a black (or in general, dark) surface, it will continue to repeat these instructions
+
+		//we read the value from serial port 1 into the temp variable
+		temp = ReadSerial(1);
+		temp2 = ReadSerial(4);
+
+		//the invalid values that we want to throw away tend to be in the 400-1700 range, we only want
+		//to look at values that are less than 100. You should never receive valid values above 100.
+		if (temp < 100)
+		{
+			sensor = temp;//assuming the temporary value we just read is valid, we store it into the sensor variable
+		}
+		if (temp2 < 100)
+		{
+			sensor2 = temp2;//assuming the temporary value we just read is valid, we store it into the sensor variable
+		}
+		//printf("sensor: %d sensor2: %d\n", sensor, sensor2);
+	}
+	Off(OUT_ALL);
+	Wait(100);
+	if (sensor > sensor2)
+	{
+
+		On(OUT_D);
+		while (sensor2 < THRESHOLD)
+		{
+			temp2 = ReadSerial(4);
+			if (temp2 < 100)
+			{
+				sensor2 = temp2;//assuming the temporary value we just read is valid, we store it into the sensor variable
+			}
+		}
+		Off(OUT_ALL);
+	}
+	else
+	{
+		On(OUT_A);
+		while (sensor < THRESHOLD)
+		{
+			temp = ReadSerial(1);
+			if (temp < 100)
+			{
+				sensor = temp;//assuming the temporary value we just read is valid, we store it into the sensor variable
+			}
+		}
+		Off(OUT_ALL);
+	}
+
+	ResetAllTachoCounts(OUT_AD);
+	SetPower(OUT_A, 10);
+	SetPower(OUT_D, 10);
+	//Then we turn the motors on
+	On(OUT_AD);
+	while (MotorRotationCount(OUT_A) < 240)
+	{
+
+	}
+	Off(OUT_ALL);
+
+	return;
+
 }
 
-void move_left()
+void left()
 {
-    
-    ResetAllTachoCounts(OUT_AD);
-    SetPower(OUT_A, 10);
-    SetPower(OUT_D, -10);
-    On(OUT_AD);
-    while (MotorRotationCount(OUT_D)> -155)
-    {
-        
-    }
-    Off(OUT_ALL);
-    move();
+	ResetAllTachoCounts(OUT_AD);
+	SetPower(OUT_A, 11);
+	SetPower(OUT_D, -10);
+	On(OUT_AD);
+	while (MotorRotationCount(OUT_D)> -200)
+	{
+
+	}
+	Off(OUT_ALL);
+	wait(100);
+	move();
 }
 
 void other_left()
 {
-    ResetAllTachoCounts(OUT_AD);
-    SetPower(OUT_A, -10);
-    SetPower(OUT_D, 10);
-    //Then we turn the motors on
-    On(OUT_AD);
-    while (MotorRotationCount(OUT_A)> -155)
-    {
-        
-    }
-    Off(OUT_ALL);
-    move();
+	ResetAllTachoCounts(OUT_AD);
+	SetPower(OUT_A, -11);
+	SetPower(OUT_D, 10);
+	//Then we turn the motors on
+	On(OUT_AD);
+	while (MotorRotationCount(OUT_A)> -200)
+	{
+
+	}
+	Off(OUT_ALL);
+	wait(100);
+	move();
 }
 
 void safe(int x,int y){
@@ -259,8 +268,9 @@ void init(int x, int y)
 void printBd() // for test only
 {
     printf("\n");
-    for(int i=3;i>=0;i--){
-        for(int j=0;j<4;j++){
+	int i, j;
+    for(i=3;i>=0;i--){
+        for(j=0;j<4;j++){
             printf("%2d ",bd[i][j]);
         }
         printf("\n");
@@ -298,38 +308,45 @@ void move_forward()
 {
     safe(position[0], position[1]);
     while (1) {
+		//printf("1.1\n");
          if (face_edge()){
              if (position[0]==0){
+				 //printf("1.2\n");
                  left();
              }
              else{
+				 //printf("1.3\n");
                 right();
              }           
          }
     else{
         if (d%4 == 0){
+			//printf("1.4\n");
             position[0] += 1;
             move();
             break;
         }
         else if (d%4 == 1){
+			//printf("1.5\n");
             position[1] += 1;
             move();
             break;
         }
         else if (d%4 == 2){
+			//printf("1.6\n");
             position[0] -= 1;
             move();
             break;
         }
         else if (d%4 == 3){
+			//printf("1.7\n");
             position[1] -= 1;
             move();
             break;
         }
     }
     }
-    
+	//printf("1.8\n");
     putCar(position[0], position[1]);
 }
 
@@ -437,12 +454,12 @@ void turn_and_move()
 
  int count_gold()
 {
-    int num = 0;
-    for (int i=0;i<4;i++)
+    int num = 0, i, j, k;
+    for (i=0;i<4;i++)
     {
-        for (int j=0;j<4;j++)
+        for (j=0;j<4;j++)
         {
-            for (int k=0;k<4;k++)
+            for (k=0;k<4;k++)
             {
                 if (poss[i][j][k]==4)
                     num++;
@@ -454,12 +471,12 @@ void turn_and_move()
 
 int count_wumpus()
 {
-    int num = 0;
-    for (int i=0;i<4;i++)
+    int num = 0,i, j, k;
+    for (i=0;i<4;i++)
     {
-        for (int j=0;j<4;j++)
+        for (j=0;j<4;j++)
         {
-            for (int k=0;k<4;k++)
+            for (k=0;k<4;k++)
             {
                 if (poss[i][j][k]==2)
                     num++;
@@ -471,7 +488,8 @@ int count_wumpus()
 
 void clear_(int m, int n)
 {
-    for (int i=0;i<4;i++)
+	int i;
+    for (i=0;i<4;i++)
     {
         poss[m][n][i] = 0; // 注意 m n
     }
@@ -479,12 +497,13 @@ void clear_(int m, int n)
 
 void find_gold()
 {
+	int i, j, k;
     if (count_gold() == 1){
-        for (int i=0;i<4;i++)
+        for (i=0;i<4;i++)
         {
-            for (int j=0;j<4;j++)
+            for (j=0;j<4;j++)
             {
-                for (int k=0;k<4;k++)
+                for (k=0;k<4;k++)
                 {
                     if (poss[i][j][k]==4){
                         if (bd[i][j]!=9){
@@ -500,12 +519,14 @@ void find_gold()
 
 void find_wumpus()
 {
-    if (count_wumpus() == 1){
-        for (int i=0;i<4;i++)
+	int i, j, k;
+    if (count_wumpus() == 1)
+	{
+        for (i=0;i<4;i++)
         {
-            for (int j=0;j<4;j++)
+            for (j=0;j<4;j++)
             {
-                for (int k=0;k<4;k++)
+                for (k=0;k<4;k++)
                 {
                     if (poss[i][j][k]==2)
                         if (bd[i][j]!=9){
@@ -519,9 +540,10 @@ void find_wumpus()
 
 int know_gold()
 {
-    for (int i=0;i<4;i++)
+	int i, j;
+    for (i=0;i<4;i++)
     {
-        for (int j=0;j<4;j++)
+        for (j=0;j<4;j++)
         {
             if (bd[i][j]==4)
                 return 1;
@@ -532,8 +554,8 @@ int know_gold()
 
 int count(int poss[4][4][4],int m, int n)
 {
-    int k=0;
-    for (int i=0; i<4; i++)
+    int k=0, i;
+    for (i=0; i<4; i++)
     {
         if (poss[m][n][i] != 0)
             k++;
@@ -543,8 +565,9 @@ int count(int poss[4][4][4],int m, int n)
 
 void mark_adjacency(int signal, int x, int y)
 {
+	int i;
     int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
-    for (int i=0; i<4; i++)
+    for (i=0; i<4; i++)
     {
         int m = adj[i][0];
         int n = adj[i][1];
@@ -565,7 +588,7 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0) // if unknown
                 {
-                    for (int i=0;i<4;i++)
+                    for (i=0;i<4;i++)
                     {
                         if (poss[m][n][i] == 1)
                         {
@@ -589,7 +612,7 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++) //i<????
+                    for (i=0;i<4;i++) //i<????
                     {
                         if (poss[m][n][i] == 2)
                         {
@@ -613,7 +636,7 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++) //i<????
+                    for (i=0;i<4;i++) //i<????
                     {
                         if (poss[m][n][i] == 2)
                         {
@@ -634,7 +657,7 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++) //i<????
+                    for (i=0;i<4;i++) //i<????
                     {
                         if (poss[m][n][i] == 1)
                         {
@@ -659,7 +682,7 @@ void mark_adjacency(int signal, int x, int y)
                 if (bd[m][n] == 0)
                 {
                     int p = 0;
-                    for (int i=0;i<4;i++)
+                    for (i=0;i<4;i++)
                     {
                         if (poss[m][n][i] == 4)
                         {
@@ -683,7 +706,7 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++)
+                    for (i=0;i<4;i++)
                     {
                         if (poss[m][n][i] == 4)
                         {
@@ -704,7 +727,7 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++) //i<????
+                    for (i=0;i<4;i++) //i<????
                     {
                         if (poss[m][n][i] == 1)
                         {
@@ -728,7 +751,7 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++)
+                    for (i=0;i<4;i++)
                     {
                         if (poss[m][n][i] == 4)
                         {
@@ -749,7 +772,7 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++) //i<????
+                    for (i=0;i<4;i++) //i<????
                     {
                         if (poss[m][n][i] == 2)
                         {
@@ -773,7 +796,7 @@ void mark_adjacency(int signal, int x, int y)
             {
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++)
+                    for (i=0;i<4;i++)
                     {
                         if (poss[m][n][i] == 4)
                         {
@@ -794,7 +817,7 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++) //i<????
+                    for (i=0;i<4;i++) //i<????
                     {
                         if (poss[m][n][i] == 2)
                         {
@@ -815,7 +838,7 @@ void mark_adjacency(int signal, int x, int y)
                 
                 if (bd[m][n] == 0)
                 {
-                    for (int i=0;i<4;i++) //i<????
+                    for (i=0;i<4;i++) //i<????
                     {
                         if (poss[m][n][i] == 1)
                         {
@@ -897,6 +920,7 @@ int main()
     printBd();
     int signal;
     int p = 0;
+	OutputInit();
     
     while (1)
     {
@@ -911,11 +935,11 @@ int main()
         }
         else
         {
-            if (know_gold())
+            if (know_gold() && (signal == 4 || signal == 0))
             {   printBd();
-                int p=0;
+                int p=0, i;
                 int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
-                for (int i=0;i<4;i++)
+                for (i=0;i<4;i++)
                 {
                     if (bd[adj[i][0]][adj[i][1]] == 4)
                     {
@@ -926,7 +950,8 @@ int main()
                 }
                 if (p==0){
                     move_back();
-                    for (int i=0;i<4;i++){
+					int i;
+                    for (i=0;i<4;i++){
                         if (bd[adj[i][0]][adj[i][1]] == 4)
                     {
                         move_to_that(adj[i][0], adj[i][1]);
@@ -938,19 +963,22 @@ int main()
             }
             else
             {
+				
                 if (signal == 0){
-
+					//printf("1\n");
                     move_forward();
                 }
             
                 else if (signal == 1)
                     {
+					//printf("2\n");
                         turn_and_move();
                     }
                 
                 else if (signal == 2 || signal == 3){
-
-                    for (int i=0; i<4; i++)
+					//printf("3\n");
+					int i;
+                    for (i=0; i<4; i++)
                     {
                         int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
                         if (bd[ adj[i][0] ][ adj[i][1] ] == 2){
@@ -968,9 +996,10 @@ int main()
                     }
                 
                 else if (signal == 4 || signal == 5 || signal == 6 || signal == 7){
-                    int p=0;
+					//printf("4\n");
+                    int p=0, i;
                     int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
-                    for (int i=0; i<4; i++)
+                    for ( i=0; i<4; i++)
                     {
                         if (bd[ adj[i][0] ][ adj[i][0] ] == 4)
                         {
@@ -990,6 +1019,7 @@ int main()
                     }
                 
                     if (p == 0){
+						printf("5\n");
                         turn_and_move();
                     }
                 }
@@ -1000,5 +1030,6 @@ int main()
     }
     
     back();
+	OutputExit();
 }
 
