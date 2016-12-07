@@ -935,7 +935,7 @@ int main()
         }
         else
         {
-            if (know_gold() && (signal == 4 || signal == 0))
+            if (know_gold() )
             {   printBd();
                 int p=0, i;
                 int adj[4][2] = {{position[0]+1,position[1]},{position[0]-1,position[1]},{position[0],position[1]+1},{position[0],position[1]-1}};
@@ -949,8 +949,9 @@ int main()
                     }
                 }
                 if (p==0){
-                    move_back();
-					int i;
+                    if (signal == 4 || signal == 0){
+                        move_back();
+                    int i;
                     for (i=0;i<4;i++){
                         if (bd[adj[i][0]][adj[i][1]] == 4)
                     {
@@ -958,7 +959,7 @@ int main()
                         break;
                     }
                     }
-                    
+                    }
                 }
             }
             else
@@ -1028,7 +1029,6 @@ int main()
         printBd();
         printf("direction: %d\n\n",d%4);
     }
-    
     back();
 	OutputExit();
 }
