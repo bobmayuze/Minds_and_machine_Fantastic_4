@@ -15,11 +15,11 @@
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">WUMBO</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
+        <!-- <li><a href="#">Navbar Link</a></li> -->
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
+        <!-- <li><a href="#">Navbar Link</a></li> -->
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -71,7 +71,10 @@
           <h3>About Sir. Robin</h3>
           <h4>Meet Sir. Robin</h4>
           <p class="left-align light">Sir Robin is a humble lego robot formed of parts from the lego mindstorms set provided to us at the start of the project. He was designed not only with optimal functionality in mind, but also maximum aesthetic within that functionality. When first putting Sir Robin together, we debated using tank tracks to maximize aesthetic, but realized that the functionality would not work as well in regards to turning, so we went with a set of wheels to be moved by the motors, placed on either side of the EV3 processing unit, which makes up the body of the robot. On the other end we placed a ball bearing for smoothest movement in all directions needed. When he needed to turn, one of the main wheels would turn one direction, while the other would stay put, swinging the robot around in place with the ball bearing following this movement smoothly, and keeping the robot in balance. On the front before the wheels, evenly placed collinearly on each end, were the light sensors which allow the robot to know when it was about to cross the line from one square to another. These were placed on the very front of the robot so that the robot would know before it crossed into the next square that it needed to stop. All extended pieces of the robot were braced with long lego pieces and pins to hold them in place. We made sure to place the wires from the motors and sensors to the base EV3 unit in a way such that they were out of the way and did not conflict with Sir Robin’s movement. Black feet extrude from the back on either end of the ball bearing to correct the angle of the sensors and balance the robot.  </p>
-          <h4>Is Sir Robin Intelligence? </h4>
+          <h4>How he did it</h4>
+          <p class="left-align light">The logic works like this. For every block, there are possible values for it and there is exact one real value for it. And when the robot move to a block, the first thing it does is to mark the block adjacent to it. If it does not sure what’s in that block, it will give it a possible value. If it is confident about what’s in the block, it will directly give it the real value and empty all the possible values of that block. After it marks the adjacent blocks, it will first check whether it knows where the gold is already or not. If it knows the position of the gold, it will calculate a safe path to the gold, and then calculate a safe path to go home. If it has not known where the gold is yet, it will move depends on the signal. If the signal indicates that all adjacent blocks are safe, it will move forward and then gets another signal. If the signal indicates that there may be one or more holes near it, the robot will move to a safe block that it hasn’t visited yet. If the signal indicates that there is a Wumpus adjacent to it, it will check whether it knows where the Wumpus is or not, if the robot knows, it will move to the wumpus and shoot it. If it still has no idea about the Wumpus, it will move to the safe block that it hasn’t visited yet as well. For all other signals, the robot does the same thing, first check the gold, then check the Wumpus, and if it has no idea where the gold or Wumpus is, move to a safe block to get the next signal. Finally, if the robot get the signal that says it is standing on the gold, it will calculate a safe path to go home.</p>
+
+          <h4>Is Sir Robin Intelligent? </h4>
           <p class="left-align light">The question of what makes something intelligence is something that has been debated back and forth by philosophers for centuries, and has come to light especially now in an age of such advanced technology and digital media. Is a computer, with its vast knowledge and computing power, intelligent by our definition? Or is intelligence more than that? If we went by computing power and raw facts, then humans would be nothing up to the computer I am currently typing this on, but when it comes to application of these facts in a real world environment, this computer is next to useless without a human to utilize it for such needs. This is where the question of consciousness starts to trickle into the definition of intelligence. Does something need to have consciousness in order to be intelligent? What exactly is consciousness? Are the two codependent? In order to define one we must define the other. </p>
           <p class="left-align light">So by any well accepted definition, intelligence is much more than raw facts and computing power. Rather, it lies in the understanding of those facts and the ability to apply them to the environment or surroundings, which suggests consciousness. Consciousness is, in a simplistic definition, awareness and understanding of the self and one's surroundings. So in order to be intelligent, it suggests that something must be conscious.</p>
           <p class="left-align light">Sir Robin is a robot that we have programmed to receive input about its “surroundings”, interpret this input using programmed logic, then move according to the movement code we also programmed in there. As you can see, there is a lot of programming involved. More specifically, us programming it to know what to do and how to do it. Does that mean the robot is not intelligent? We as humans are also “programmed” by our caretakers and our surroundings, but unlike Sir Robin we are able to independently come to our own conclusions and make decisions based on these conclusions. Sir Robin is able to make decisions we programmed him to make based off of conclusions that are specifically fed to him; he doesn't act independently or according to his own interests and well-being.  </p>
@@ -102,7 +105,33 @@
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
           <h4>Meet the Wumbo Team!</h4>
-          <p class="left-align light">TEAMTEAMTEAM</p>
+          <p class="left-align light">The Wumbo Team is a group of four Minds and Machines students from a variety of different backgrounds and majors ranging from information technology to biomedical engineering coming together for a common purpose; to teach Sir Robin how to successfully navigate the Wumpus World.
+          </p>
+
+          <p class="light">Nathan Mascari</p>
+          <p class="light">Position: Programming/builder</p>
+          <p class="light">Major: Computer Science Engineering/Electrical </p>Engineering
+          <p class="light">Year: Class of 2020</p>
+          <p class="light">From: Syracuse, New York, United States</p>
+          <p class="light">About: Hey there. I’m a freshie at RPI. Im involved in a few clubs, including a mars rover challenge and the Rensselaer Outing Club.  I enjoy hiking and staying up late to go through the tech dumps. I worked on the motion and robot design potion because I enjoy both coding and building. </p>
+          <p class="light">Sarah Haslam</p>
+          <p class="light">Position: Media/Blogging</p>
+          <p class="light">Major: Biomedical Engineering</p>
+          <p class="light">Year: Class of 2020</p>
+          <p class="light">From:  Arlington, Texas, United States</p>
+          <p class="light">About: Hello! I am a pre-med freshman at RPI and i enjoy things like hiking, writing, and crafting of all different kinds! I worked on the media and blogging part of the project because I have never had any programming experience and really don’t understand the witchcraft that is code.</p>
+          <p class="light">Yuze Bob Ma</p>
+          <p class="light">Position: Web Developing/Logic</p>
+          <p class="light">Major: Information Technology and Web Science</p>
+          <p class="light">Year: Class of 2020</p>
+          <p class="light">From: Zhoushan, Zhejiang, China</p>
+          <p class="light">About: Life is short and python is good!</p>
+          <p class="light">Xiaoyi (Levana) Liu</p>
+          <p class="light">Position: Logic/Programming </p>
+          <p class="light">Major: Cognitive Science </p>
+          <p class="light">Year: Class of 2020</p>
+          <p class="light">From: Beijing, China</p>
+          <p class="light">About: Hey, I am a Cogs freshman at RPI and will be a Cogs dual CS in the future. I did the logic part of this project because LOGIC IS FUN! Also, I also wrote the program for Sir Robin to find the gold and go back home safely. I don’t have much programming experience before but I did it and I think coding is FUN AS WELL. XDDDD </p>          
         </div>
       </div>
 
@@ -117,7 +146,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="resources/Day3Photo1.png"></div>
+    <div class="parallax"><img src="resources/team.png"></div>
   </div>
 
 
@@ -158,38 +187,20 @@
     <div class="parallax"><img src="resources/wiki_end.png" alt="Unsplashed background img 3"></div>
   </div>
 
-  <footer class="page-footer teal">
+  <footer class="page-footer teal ">
     <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+      <div class="row center">
+        <div class="col l12 s12">
+          <h5 class="white-text">Our Mission</h5>
+          <p class="grey-text text-lighten-4">The Wumbo team is a group of first year Rensselaer Polytechnic Institute students who came together through minds and machines for one purpose; to design a robot to navigate through the Wumpus World. Our mission is to build and program a robot to be able to logically and physically navigate through a board of 4x4 squares with the potential of different threats on each square in order to find virtual “gold”. </p>
+        </div>
 
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
       </div>
     </div>
+
     <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      <div class="container center">
+       <a class="brown-text text-lighten-3" href="http://bobmayuze.github.io"> 2016 © Bob.Ma All Rights Reserved</a>
       </div>
     </div>
   </footer>
